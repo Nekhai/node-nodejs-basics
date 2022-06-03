@@ -1,11 +1,19 @@
 import fs from "fs";
 
 export const read = async () => {
-  fs.readFile("./files/fileToRead.txt", "utf8", (error, data) => {
-    if (error) {
-      console.log("FS operation failed");
-    } else {
-      console.log(data);
+  const path = "./files/fileToRead.txt";
+
+  fs.readFile(path, "utf8", (error, data) => {
+    try {
+      if (error) {
+        throw new Error("FS operation failed");
+      } else {
+        console.log(data);
+      }
+    } catch (err) {
+      console.error(err.message);
     }
   });
 };
+
+read();

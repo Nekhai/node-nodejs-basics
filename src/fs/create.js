@@ -5,8 +5,14 @@ export const create = async () => {
   const path = "./files/fresh.txt";
 
   fs.writeFile(path, text, { flag: "wx" }, (error) => {
-    if (error) {
-      console.log("FS operation failed");
+    try {
+      if (error) {
+        throw new Error("FS operation failed");
+      }
+    } catch (err) {
+      console.error(err.message);
     }
   });
 };
+
+create();

@@ -1,9 +1,17 @@
 import fs from "fs";
 
 export const remove = async () => {
-  fs.unlink("./files/fileToRemove.txt", (error) => {
-    if (error) {
-      console.log("FS operation failed");
+  const path = "./files/fileToRemove.txt";
+
+  fs.unlink(path, (error) => {
+    try {
+      if (error) {
+        throw new Error("FS operation failed");
+      }
+    } catch (err) {
+      console.error(err.message);
     }
   });
 };
+
+remove();
