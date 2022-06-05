@@ -13,7 +13,7 @@ export const performCalculations = async () => {
       worker.on("error", reject);
       worker.on("exit", (code) => {
         if (code !== 0) {
-          console.log("error");
+          return reject;
         }
       });
     });
